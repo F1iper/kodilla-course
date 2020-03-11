@@ -19,12 +19,12 @@ public class TestingMain {
 
         Calculator calculator = new Calculator();
         if(calculator.add(2, 6) == 2 + 6){
-            System.out.println("test add OK");
+            System.out.println("test add() OK");
         } else {
             System.out.println("Error!");
         }
         if(calculator.subtract(10, 2) == 10 -2){
-            System.out.println("test subtract OK");
+            System.out.println("test subtract() OK");
         } else {
             System.out.println("Error!");
         }
