@@ -13,38 +13,56 @@ public class ForumUser {
         this.name = name;
         this.realName = realName;
     }
-
-    public void addPost(String author, String postBody){
-
-    }
-    public void addComment(ForumPost thePost, String author, String commentBody){
-
-    }
-    public int getPostsQuantity(){
-        return 1;
-    }
-    public int getCommentQuantity(){
-        return 1;
-    }
-    public ForumPost getPost(int postNumber){
-        ForumPost forumPost = new ForumPost("Hello everyone, " +
-                "this is my first contribution here!", "mrsmith");
-
-        return forumPost;
-    }
-    public ForumComment getComment(int commentNumber){
-        return null;
-    }
-    public boolean removePost(ForumPost thePost){
-        return true;
-    }
-    public boolean removeComment(ForumComment theComment){
-        return true;
-    }
     public String getName(){
         return name;
     }
     public String getRealName(){
         return realName;
     }
+
+    public void addPost(String author, String postBody) {
+        ForumPost thePost = new ForumPost(postBody, author);
+        posts.add(thePost);
+    }
+    public void addComment(ForumPost thePost, String author, String commentBody) {
+        ForumComment theComment = new ForumComment(thePost, commentBody, author);
+        comments.add(theComment);
+    }
+    public int getPostsQuantity() {
+        return posts.size();
+    }
+    public int getCommentQuantity() {
+        return comments.size();
+    }
+    public ForumPost getPost(int postNumber) {
+        ForumPost thePost = null;
+        if (postNumber >= 0 && postNumber < posts.size()) {
+            thePost = posts.get(postNumber);
+        }
+        return thePost;
+    }
+    public ForumComment getComment(int commentNumber) {
+        ForumComment theComment = null;
+        if (commentNumber >= 0 && commentNumber < comments.size()){
+            theComment = comments.get(commentNumber);
+        }
+        return theComment;
+    }
+    public boolean removePost(ForumPost thePost) {
+        boolean result = false;
+        if (posts.contains(thePost)){
+            posts.remove(thePost);
+            result = true;
+        }
+        return result;
+    }
+    public boolean removeComment(ForumComment theComment) {
+        boolean result = false;
+        if (comments.contains(theComment)){
+            comments.remove(theComment);
+            result = true;
+        }
+        return result;
+    }
+
 }

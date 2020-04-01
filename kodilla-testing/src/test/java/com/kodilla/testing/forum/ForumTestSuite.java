@@ -26,22 +26,23 @@ public class ForumTestSuite {
 
     @Test
     public void testCaseUsername() {
-
+        //Given
         SimpleUser simpleUser = new SimpleUser("theForumUser", "John Wick");
-
+        //When
         String result = simpleUser.getUsername();
         System.out.println("Testing " + result);
-
+        //Then
         Assert.assertEquals("theForumUser", result);
     }
 
     @Test
     public void testCaseRealName() {
+        //Given
         SimpleUser simpleUser = new SimpleUser("theForumUser", "John Wick");
-
+        //When
         String result = simpleUser.getRealName();
         System.out.println("Testing " + result);
-
+        //Then
         Assert.assertEquals("John Wick", result);
     }
 }

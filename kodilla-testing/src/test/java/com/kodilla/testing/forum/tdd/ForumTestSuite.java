@@ -21,17 +21,18 @@ public class ForumTestSuite {
         testCounter++;
         System.out.println("Preparing to execute test #" + testCounter);
     }
-    @Test
-    public void testAddPost(){
+    @Test //1
+    public void testAddPost() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
         //When
         forumUser.addPost("mrsmith",
                 "Hello everyone, this is my first contribution here!");
+
         //Then
         Assert.assertEquals(1, forumUser.getPostsQuantity());
     }
-    @Test
+    @Test //2
     public void testAddComment() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
@@ -42,9 +43,9 @@ public class ForumTestSuite {
         forumUser.addComment(thePost, "mrsmith", "Thank you for all good words!");
 
         //Then
-        Assert.assertEquals(0, forumUser.getCommentQuantity());
+        Assert.assertEquals(1, forumUser.getCommentQuantity());
     }
-    @Test
+    @Test //3
     public void testGetPost() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
@@ -59,7 +60,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals(thePost, retrievedPost);
     }
-    @Test
+    @Test //4
     public void testGetComment() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
@@ -76,7 +77,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals(theComment, retrievedComment);
     }
-    @Test
+    @Test //5
     public void testRemovePostNotExisting() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
@@ -89,7 +90,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertFalse(result);
     }
-    @Test
+    @Test //6
     public void testRemoveCommentNotExisting() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
@@ -104,7 +105,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertFalse(result);
     }
-    @Test
+    @Test //7
     public void testRemovePost() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
