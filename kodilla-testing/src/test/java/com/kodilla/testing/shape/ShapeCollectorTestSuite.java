@@ -29,7 +29,7 @@ public class ShapeCollectorTestSuite {
     public void testAddAndGetFigure() {
         //Given
         ShapeCollector underTest = new ShapeCollector();
-        Shape figure = new Triangle("triangle", 0);
+        Shape figure = new Triangle("triangle", 2);
 
         //When
         underTest.addFigure(figure);
@@ -44,9 +44,9 @@ public class ShapeCollectorTestSuite {
         //Given
         ShapeCollector underTest = new ShapeCollector();
         Shape figure = new Triangle("triangle", 0);
-        underTest.addFigure(figure);
 
         //When
+        underTest.addFigure(figure);
         boolean result = underTest.removeFigure(0);
 
         //Then
