@@ -2,8 +2,8 @@ package com.kodilla.stream.beautifier;
 
 public class PoemBeautifier {
 
-    public void beautify(String str, PoemDecorator poemDecorator){
+    public void beautify(PoemDecorator poemDecorator, String str) {
         poemDecorator.decorate(str);
-        
+
     }
 }
