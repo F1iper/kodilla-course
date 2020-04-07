@@ -1,4 +1,4 @@
-package com.kodilla.stream.person;
+package com.kodilla.stash.stream;
 
 import java.util.ArrayList;
 import java.util.List;

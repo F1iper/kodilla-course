@@ -1,34 +1,43 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.beautifier.PoemDecorator;
-import com.kodilla.stream.beautifier.PoemExecutor;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
     public static void main(String[] args) {
-//        Processor processor = new Processor();
-//        processor.execute(() -> System.out.println("This is example text"));
-//
-//        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
-//        expressionExecutor.executeExpression(12, 10, (a, b) -> a + b);
-//        expressionExecutor.executeExpression(11, 110, (a, b) -> a - b);
-//        expressionExecutor.executeExpression(224, 54, (a, b) -> a * b);
-//        expressionExecutor.executeExpression(3653, 356, (a, b) -> a / b);
-//        expressionExecutor.executeExpression(63, 34, (a, b) -> a % b);
-//
-//        expressionExecutor.executeExpression(3,4, FunctionalCalculator::addAToB);
-//        expressionExecutor.executeExpression(7,12, FunctionalCalculator::subBFromA);
-//        expressionExecutor.executeExpression(765, 12, FunctionalCalculator::multiplyAByB);
-//        expressionExecutor.executeExpression(674,531, FunctionalCalculator::divisionAByB);
-
 
         PoemBeautifier poemBeautifier = new PoemBeautifier();
-        PoemExecutor poemExecutor = new PoemExecutor();
 
-        poemBeautifier.beautify(poemExecutor, "th15 15 wRoNg 53nT3nC3");
+        System.out.println(poemBeautifier.beautify("This is going to be beautifull", s -> s.toUpperCase()));
+        System.out.println(poemBeautifier.beautify("sEnTeNcE NuMbEr TwO", s -> {
+                    String reverse = "";
+                    for (int i = s.length() - 1; i >= 0; i--) {
+                        reverse += s.charAt(i);
+                    }
+                    return reverse;
+            }));
+        System.out.println(poemBeautifier.beautify("sEnTeNcE NuMbEr TwO", s -> "***" + s.substring(0, 8) + "***"));
+        System.out.println(poemBeautifier.beautify("an0th3r 3xampl3",
+                s-> s.replace("0", "o").replace("3", "e").toUpperCase()));
+
+        Forum forum = new Forum();
+
+        Map<String, ForumUser> theResultUsersMap = forum.getTheUsersList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getDateOfBirth().getYear() < 2000)
+                .filter(forumUser -> forumUser.getPostsCount() >= 1)
+                .collect(Collectors.toMap(ForumUser::getIdNumber, forumUser -> forumUser));
+
+        System.out.println("Size of result users map: " + theResultUsersMap.size());
+        theResultUsersMap.entrySet().stream()
+                .map(entry -> entry.getKey() + " | " + entry.getValue())
+                .forEach(System.out::println);
+
 
     }
 }
