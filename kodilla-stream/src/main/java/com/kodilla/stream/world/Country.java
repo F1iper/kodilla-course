@@ -17,9 +17,4 @@ public final class Country {
     public BigDecimal getPeopleQuantity() {
         return numberOfPeople;
     }
-
-    @Override
-    public String toString() {
-        return "Country: " + name + ", number of people: " + numberOfPeople;
-    }
 }

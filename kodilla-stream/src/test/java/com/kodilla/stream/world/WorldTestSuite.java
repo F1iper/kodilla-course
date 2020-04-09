@@ -6,36 +6,6 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 public class WorldTestSuite {
-//
-//    @Test
-//    public void testGetPeopleQuantity() {
-//        //Given
-//        Country germany = new Country("Germany", new BigDecimal("87264"));
-//        Country kenia = new Country("Kenia", new BigDecimal("516535"));
-//        Country china = new Country("China", new BigDecimal( "535135"));
-//
-//        Continent europe = new Continent("Europe");
-//        Continent asia = new Continent("Asia");
-//        Continent africa = new Continent("Africa");
-//
-//        europe.addCountry(germany);
-//        asia.addCountry(china);
-//        africa.addCountry(kenia);
-//
-//        World world = new World();
-//
-//        world.addContinent(europe);
-//        world.addContinent(africa);
-//        world.addContinent(asia);
-//
-//        //When
-//        BigDecimal totalPeople = world.getPeopleQuantity();
-//
-//        //Then
-//        BigDecimal expectedPeopleNumber = new BigDecimal("1138934");
-//        Assert.assertEquals(expectedPeopleNumber, totalPeople);
-//
-//    }
 
     @Test
     public void testGetPeopleQuantityWithReduce() {
