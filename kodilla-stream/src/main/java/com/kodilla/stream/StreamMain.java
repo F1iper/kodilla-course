@@ -15,15 +15,15 @@ public class StreamMain {
 
         System.out.println(poemBeautifier.beautify("This is going to be beautifull", s -> s.toUpperCase()));
         System.out.println(poemBeautifier.beautify("sEnTeNcE NuMbEr TwO", s -> {
-                    String reverse = "";
-                    for (int i = s.length() - 1; i >= 0; i--) {
-                        reverse += s.charAt(i);
-                    }
-                    return reverse;
-            }));
+            String reverse = "";
+            for (int i = s.length() - 1; i >= 0; i--) {
+                reverse += s.charAt(i);
+            }
+            return reverse;
+        }));
         System.out.println(poemBeautifier.beautify("sEnTeNcE NuMbEr TwO", s -> "***" + s.substring(0, 8) + "***"));
         System.out.println(poemBeautifier.beautify("an0th3r 3xampl3",
-                s-> s.replace("0", "o").replace("3", "e").toUpperCase()));
+                s -> s.replace("0", "o").replace("3", "e").toUpperCase()));
 
         Forum forum = new Forum();
 
@@ -35,9 +35,8 @@ public class StreamMain {
 
         System.out.println("Size of result users map: " + theResultUsersMap.size());
         theResultUsersMap.entrySet().stream()
-                .map(entry -> entry.getKey() + " | " + entry.getValue())
+                .map(entry -> "key: " + entry.getKey() + " | " + "value: " + entry.getValue())
                 .forEach(System.out::println);
-
 
     }
 }
