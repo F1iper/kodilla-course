@@ -4,11 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.assertEquals;
 
 public class BoardTestSuite {
 
@@ -78,14 +77,15 @@ public class BoardTestSuite {
     public void testAddTaskList() {
         //Given
         Board project = prepareTestData();
+
         //When
 
         //Then
-        assertEquals(3, project.getTaskLists().size());
+        Assert.assertEquals(3, project.getTaskLists().size());
     }
 
     @Test
-    public void testAddTaskListFindUsersTasks(){
+    public void testAddTaskListFindUsersTasks() {
         //Given
         Board project = prepareTestData();
 
@@ -94,11 +94,57 @@ public class BoardTestSuite {
         List<Task> tasks = project.getTaskLists().stream()
                 .flatMap(l -> l.getTasks().stream())
                 .filter(t -> t.getAssignedUser().equals(user))
-                .collect(toList());
+                .collect(Collectors.toList());
 
         //Then
-        assertEquals(2, tasks.size());
-        assertEquals(user, tasks.get(0).getAssignedUser());
-        assertEquals(user, tasks.get(1).getAssignedUser());
+        Assert.assertEquals(2, tasks.size());
+        Assert.assertEquals(user, tasks.get(0).getAssignedUser());
+        Assert.assertEquals(user, tasks.get(1).getAssignedUser());
+    }
+
+    @Test
+    public void testAddTaskListFindOutdatedTasks() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> undoneTasks = new ArrayList<>();
+        undoneTasks.add(new TaskList("To do"));
+        undoneTasks.add(new TaskList("In progress"));
+        List<Task> tasks = project.getTaskLists().stream()
+                .filter(undoneTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .filter(t -> t.getDeadline().isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+
+        //Then
+        Assert.assertEquals(1, tasks.size());
+        Assert.assertEquals("HQLs for analysis", tasks.get(0).getTitle());
+    }
+
+    @Test
+    public void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgressTaskLists = new ArrayList<>();
+        inProgressTaskLists.add(new TaskList("In progress"));
+
+        double sumOfDaysBeforeNow = project.getTaskLists().stream()
+                .filter(inProgressTaskLists::contains)
+                .flatMap(t -> t.getTasks().stream())
+                .mapToDouble(t -> ChronoUnit.DAYS.between(t.getCreated(), LocalDate.now()))
+                .sum();
+        double averageDaysForProject = project.getTaskLists().stream()
+                .filter(inProgressTaskLists::contains)
+                .flatMap(t -> t.getTasks().stream())
+                .mapToDouble(t -> ChronoUnit.DAYS.between(t.getCreated(), LocalDate.now()))
+                .average()
+                .getAsDouble();
+
+        //Then
+        Assert.assertEquals(30, sumOfDaysBeforeNow, 0.01);
+        Assert.assertEquals(10, averageDaysForProject, 0.01);
     }
 }
