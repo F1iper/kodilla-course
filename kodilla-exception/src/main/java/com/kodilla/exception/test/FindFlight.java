@@ -1,12 +1,12 @@
-
 package com.kodilla.exception.test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class FindFlight {
 
-    HashMap<String, Boolean> findFlight(Flight flight) throws RouteNotFoundException {
-        HashMap<String, Boolean> possibleFlights = new HashMap<>();
+    static boolean findFlight(Flight flight) throws RouteNotFoundException {
+        Map<String, Boolean> possibleFlights = new HashMap<>();
         possibleFlights.put("BER", false);
         possibleFlights.put("EIN", true);
         possibleFlights.put("AMS", true);
@@ -14,31 +14,26 @@ public class FindFlight {
         possibleFlights.put("ABD", true);
         possibleFlights.put("BJS", false);
 
-        try {
-            if (possibleFlights.get(flight.getArrivalAirport()))
-                System.out.println("This flight is possible!");
-
-            else
-                throw new RouteNotFoundException("Route is not possible...");
-
-        } catch (RouteNotFoundException e) {
-            System.out.println("Route is not possible!");
+        if (possibleFlights.containsKey(flight.getArrivalAirport())) {
+            return possibleFlights.get(flight.getArrivalAirport());
+        } else {
+            throw new RouteNotFoundException("Route is not possible!");
         }
-        return new HashMap<>(possibleFlights);
     }
 
-    public static void main(String[] args) throws RouteNotFoundException {
+    static void search() throws RouteNotFoundException{
         Flight f1 = new Flight("WAW", "BER");
         Flight f2 = new Flight("WAW", "EIN");
         Flight f3 = new Flight("WAW", "AMS");
         Flight f4 = new Flight("WAW", "PHX");
         Flight f5 = new Flight("WAW", "ABD");
-        Flight f6 = new Flight("WAW", "BJS");
+        Flight f6 = new Flight("WAW", "WAW");
 
-        FindFlight searchFlight = new FindFlight();
-
-        System.out.println(searchFlight.findFlight(f1));
-        System.out.println(searchFlight.findFlight(f2));
-        System.out.println(searchFlight.findFlight(f4));
+        System.out.println(findFlight(f1));
+        System.out.println(findFlight(f2));
+        System.out.println(findFlight(f3));
+        System.out.println(findFlight(f4));
+        System.out.println(findFlight(f5));
+        System.out.println(findFlight(f6));
     }
 }

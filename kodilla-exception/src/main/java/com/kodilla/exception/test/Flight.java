@@ -35,8 +35,4 @@ public class Flight {
         return arrivalAirport != null ? arrivalAirport.hashCode() : 0;
     }
 
-    @Override
-    public String toString() {
-        return "Flight from: " + departureAirport + ", to: " + arrivalAirport;
-    }
 }

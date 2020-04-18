@@ -2,9 +2,9 @@ package task;
 
 public class Element {
 
-    private String value;
-    private Element next = null;
-    private Element prev = null;
+    String value;
+    Element next = null;
+    Element prev = null;
 
     public Element(String value) {
         this.value = value;
@@ -28,5 +28,9 @@ public class Element {
 
     public void setPrev(Element prev) {
         this.prev = prev;
+    }
+
+    public String toString() {
+        return value;
     }
 }
