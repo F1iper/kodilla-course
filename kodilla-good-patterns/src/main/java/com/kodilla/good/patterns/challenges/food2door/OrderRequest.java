@@ -1,17 +1,16 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
 public class OrderRequest {
-
-    private final Producer producer;
+    private final Shop shop;
     private final Product product;
 
-    public OrderRequest(final Producer producer, final Product product) {
-        this.producer = producer;
+    public OrderRequest(final Shop shop, final Product product) {
+        this.shop = shop;
         this.product = product;
     }
 
-    public Producer getProducer() {
-        return producer;
+    public Shop getShop() {
+        return shop;
     }
 
     public Product getProduct() {

@@ -2,25 +2,25 @@ package com.kodilla.good.patterns.challenges.food2door;
 
 public class OrderDto {
 
-    public Producer producer;
     public boolean isOrdered;
-    public boolean isRegular;
+    public Shop shop;
+    public boolean isGoodClient;
 
-    public OrderDto(Producer producer, boolean isOrdered, boolean isRegular) {
-        this.producer = producer;
+    public OrderDto(Shop shop, boolean isOrdered, boolean isGoodClient) {
         this.isOrdered = isOrdered;
-        this.isRegular = isRegular;
-    }
-
-    public Producer getProducer() {
-        return producer;
+        this.shop = shop;
+        this.isGoodClient = isGoodClient;
     }
 
     public boolean isOrdered() {
         return isOrdered;
     }
 
-    public boolean isRegular() {
-        return isRegular;
+    public Shop getUser() {
+        return shop;
+    }
+
+    public boolean isGoodClient() {
+        return isGoodClient;
     }
 }

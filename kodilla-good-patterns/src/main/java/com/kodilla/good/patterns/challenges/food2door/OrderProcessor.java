@@ -1,38 +1,31 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-import com.kodilla.good.patterns.challenges.food2door.informationServices.InformationService;
-
-
 public class OrderProcessor {
 
-    private final InformationService informationService;
-    private final OrderService orderService;
-    private final OrderRepository orderRepository;
-    private final ClientDatabase clientDatabase;
+    InfoService infoService;
+    OrderService orderService;
+    OrderRepository orderRepository;
 
-    public OrderProcessor(InformationService informationService,
+
+    public OrderProcessor(InfoService infoService,
                           OrderService orderService,
-                          OrderRepository orderRepository,
-                          ClientDatabase clientDatabase) {
-        this.informationService = informationService;
+                          OrderRepository orderRepository) {
+        this.infoService = infoService;
         this.orderService = orderService;
         this.orderRepository = orderRepository;
-        this.clientDatabase = clientDatabase;
     }
 
-    public OrderDto process(final OrderRequest orderRequest) {
-        boolean isOrdered = orderService.order(orderRequest.getProducer(), orderRequest.getProduct());
-        boolean isRegular = clientDatabase.isRegular(orderRequest.getProducer());
+    public OrderDto process(OrderRequest orderRequest) {
+        boolean isOrdered = orderService.order(orderRequest.getShop(), orderRequest.getProduct());
 
-        if (isOrdered && !isRegular) {
-            informationService.inform(orderRequest.getProducer());
-            orderRepository.createOrder(orderRequest.getProducer(), orderRequest.getProduct());
-            return new OrderDto(orderRequest.getProducer(), true, false);
-        } else if(isOrdered && isRegular){
-            //todo : check conditions, and dependency -> OrderDto, orderRequest, returns OrderDto..
-            return new OrderDto(orderRequest.getProducer(), true, true);
+        if (isOrdered) {
+            infoService.inform(orderRequest.getShop());
+            orderRepository.createOrder(orderRequest.getShop(), orderRequest.getProduct());
+            return new OrderDto(orderRequest.getShop(), true, false);
         } else {
-            return new OrderDto(orderRequest.getProducer(), false, false);
+            infoService.inform(orderRequest.getShop());
+            orderRepository.createOrder(orderRequest.getShop(), orderRequest.getProduct());
+            return new OrderDto(orderRequest.getShop(), true, true);
         }
     }
 }

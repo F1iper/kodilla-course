@@ -1,27 +1,19 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-public class Producer {
+public class Shop {
 
     private final String name;
-    private final String surname;
     private final String address;
     private final String email;
-    private final String phone;
 
-    public Producer(final String name, final String surname, final String address, final String email, final String phone) {
+    public Shop(String name, String address, String email) {
         this.name = name;
-        this.surname = surname;
         this.address = address;
         this.email = email;
-        this.phone = phone;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getSurname() {
-        return surname;
     }
 
     public String getAddress() {
@@ -32,7 +24,8 @@ public class Producer {
         return email;
     }
 
-    public String getPhone() {
-        return phone;
+    @Override
+    public String toString() {
+        return "Shop name: " + getName() + ", address: " + getAddress() + ", email: |" + getEmail() + "|";
     }
 }
