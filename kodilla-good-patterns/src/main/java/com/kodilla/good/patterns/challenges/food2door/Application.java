@@ -1,15 +1,11 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-
-
 public class Application {
 
     public static void main(String[] args) {
-        OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
-        OrderRequest orderRequest = orderRequestRetriever.retrieve();
+        OrderDto orderDto = new OrderDto(ShopFactory.HEALTHY_SHOP, "milk");
+        Warehouse warehouse = new Warehouse();
+        System.out.println(warehouse.processOrder(orderDto));
 
-        OrderProcessor orderProcessor = new OrderProcessor(
-                new MailService(), new ExtraFoodShop(), new ExtraFoodOrderRepository());
-        orderProcessor.process(orderRequest);
     }
 }

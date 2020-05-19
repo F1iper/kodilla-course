@@ -1,19 +1,13 @@
 package com.kodilla.good.patterns.challenges.food2door;
 
-public class HealthyShop implements OrderService {
+import java.util.Random;
 
-
+public class HealthyShop implements Shop {
     @Override
-    public boolean order(Shop shop, Product product) {
-        System.out.println("Order by: " + shop.getName() + "product name: " + product.getName() +
-                ", amount: " + product.getAmount() + ", at price: " + product.getPrice() +
-                "\nTransport will weight: " + (product.getAmount() * product.getWeight() + " kg's"));
-        if (product.getAmount() >= 1000) {
-            System.out.println("This is regular customer, discount 10% provided.");
-            return true;
-        } else {
-            System.out.println("Transport will need more trucks!");
-            return true;
-        }
+    public boolean processOrder(OrderDto orderDto) {
+        Random random = new Random();
+        boolean result = random.nextBoolean();
+        System.out.println("Ordering " + orderDto.getProduct() + ": " + result);
+        return result;
     }
 }
