@@ -24,7 +24,6 @@ public class BoardTestSuite {
         board.getInProgressList().getTasks().add("inProgressTask #1");
         board.getDoneList().getTasks().add("done #1");
 
-
         //Then
         Assert.assertEquals("toDoTask #1", board.getToDoList().getTasks().get(0));
         Assert.assertEquals(2, board.getToDoList().getTasks().size());
