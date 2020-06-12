@@ -9,22 +9,26 @@ public class ForumTestSuite {
     private static int testCounter = 0;
 
     @BeforeClass
-    public static void beforeAllTests(){
+    public static void beforeAllTests() {
         System.out.println("This is the beggining of tests.");
     }
+
     @AfterClass
-    public static void afterAllTests(){
+    public static void afterAllTests() {
         System.out.println("All tests are finished.");
     }
+
     @Before
-    public void beforeEveryTest(){
+    public void beforeEveryTest() {
         testCounter++;
         System.out.println("Preparing to execute test #" + testCounter);
     }
+
     @Test //1
     public void testAddPost() {
         //Given
         ForumUser forumUser = new ForumUser("mrsmith", "John Smith");
+
         //When
         forumUser.addPost("mrsmith",
                 "Hello everyone, this is my first contribution here!");
@@ -32,6 +36,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals(1, forumUser.getPostsQuantity());
     }
+
     @Test //2
     public void testAddComment() {
         //Given
@@ -45,6 +50,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals(1, forumUser.getCommentQuantity());
     }
+
     @Test //3
     public void testGetPost() {
         //Given
@@ -60,6 +66,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals(thePost, retrievedPost);
     }
+
     @Test //4
     public void testGetComment() {
         //Given
@@ -77,6 +84,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals(theComment, retrievedComment);
     }
+
     @Test //5
     public void testRemovePostNotExisting() {
         //Given
@@ -90,6 +98,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertFalse(result);
     }
+
     @Test //6
     public void testRemoveCommentNotExisting() {
         //Given
@@ -105,6 +114,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertFalse(result);
     }
+
     @Test //7
     public void testRemovePost() {
         //Given
@@ -120,6 +130,7 @@ public class ForumTestSuite {
         Assert.assertTrue(result);
         Assert.assertEquals(0, forumUser.getPostsQuantity());
     }
+
     @Test
     public void testRemoveComment() {
         //Given
