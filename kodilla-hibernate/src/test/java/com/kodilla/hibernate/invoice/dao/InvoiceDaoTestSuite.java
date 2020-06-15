@@ -60,11 +60,11 @@ public class InvoiceDaoTestSuite {
 
 
         //CleanUp
-//        itemDao.deleteById(item1Id);
-//        itemDao.deleteById(item2Id);
-//        productDao.deleteById(memoryId);
-//        productDao.deleteById(motherboardId);
-//        invoiceDao.deleteById(invoice1Id);
+        itemDao.deleteById(item1Id);
+        itemDao.deleteById(item2Id);
+        productDao.deleteById(memoryId);
+        productDao.deleteById(motherboardId);
+        invoiceDao.deleteById(invoice1Id);
 
     }
 }
