@@ -40,7 +40,7 @@ public class FacadeTestSuite {
         employeeDao.save(lindaKovalsky);
         int lindaKovalskyId = lindaKovalsky.getId();
 
-        List<Employee> employees = facade.processFindEmployeeByPartOfName("%lind%");
+        List<Employee> employees = facade.processFindEmployeeByPartOfName("lind");
 
         //Then
         assertEquals(1, employees.size());
@@ -66,7 +66,7 @@ public class FacadeTestSuite {
         companyDao.save(coolService);
         int coolServiceId = coolService.getId();
 
-        List<Company> companies = facade.processFindCompanyByPartOfName("%co%");
+        List<Company> companies = facade.processFindCompanyByPartOfName("co");
 
         //Then
         assertEquals(2, companies.size());

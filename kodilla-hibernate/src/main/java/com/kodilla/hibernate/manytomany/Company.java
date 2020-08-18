@@ -14,7 +14,7 @@ import java.util.List;
 )
 @NamedQuery(
         name = "Company.findCompanyByPartOfName",
-        query = "FROM Company WHERE name LIKE :name"
+        query = "FROM Company WHERE name LIKE :NAME"
 )
 @Entity
 @Table(name = "COMPANIES")
