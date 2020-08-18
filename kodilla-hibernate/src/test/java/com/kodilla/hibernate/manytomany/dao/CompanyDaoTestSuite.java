@@ -69,7 +69,7 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testRetrievebyLastname() {
+    public void testRetrieveByLastname() {
         //Given
         Employee e1 = new Employee("Megan", "Markle");
         Employee e2 = new Employee("Stephen", "King");

@@ -13,6 +13,10 @@ import java.util.List;
         name = "Employee.retrieveByFirstname",
         query = "FROM Employee WHERE firstname = :FIRSTNAME"
 )
+@NamedQuery(
+        name = "Employee.findEmployeeByPartOfName",
+        query = "FROM Employee where firstname like :NAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
