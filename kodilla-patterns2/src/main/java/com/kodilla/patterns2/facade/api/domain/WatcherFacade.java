@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.aop.calculator;
+package com.kodilla.patterns2.facade.api.domain;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -8,20 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-
 @Aspect
 @Component
-public class Watcher {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
+public class WatcherFacade {
 
-    @Before("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))" +
-            "&& args(theNumber) && target(object)")
-    public void logEvent(BigDecimal theNumber, Object object) {
-        LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + theNumber);
+    public static final Logger LOGGER = LoggerFactory.getLogger(WatcherFacade.class);
+
+    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" + "&& args(orderDto, userId)")
+    public void logEvent(OrderDto orderDto, Long userId) {
+        LOGGER.info("Order: " + orderDto + ", user id: " + userId);
     }
 
-    @Around("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
+    @Around("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result;
         try {
@@ -36,3 +34,5 @@ public class Watcher {
         return result;
     }
 }
+
+
