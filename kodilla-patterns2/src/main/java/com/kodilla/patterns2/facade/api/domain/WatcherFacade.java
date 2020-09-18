@@ -16,7 +16,7 @@ public class WatcherFacade {
 
     @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" + "&& args(orderDto, userId)")
     public void logEvent(OrderDto orderDto, Long userId) {
-        LOGGER.info("Order: " + orderDto + ", user id: " + userId);
+        LOGGER.info("Order " + orderDto + ", user id: " + userId);
     }
 
     @Around("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
