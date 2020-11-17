@@ -1,6 +1,5 @@
 package com.kodilla.testing.forum.statistics;
 
-import org.graalvm.compiler.lir.phases.EconomyAllocationStage;
 import org.junit.Assert;
 import org.junit.Test;
 
